@@ -12,6 +12,9 @@
 		0907040E224939D8003EB7C9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0907040C224939D8003EB7C9 /* Main.storyboard */; };
 		09070410224939D9003EB7C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0907040F224939D9003EB7C9 /* Assets.xcassets */; };
 		09070413224939D9003EB7C9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09070411224939D9003EB7C9 /* LaunchScreen.storyboard */; };
+		098B0601224BD17100CC834C /* TriviaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098B0600224BD17100CC834C /* TriviaViewController.swift */; };
+		098B0606224BEDF200CC834C /* QuestionBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098B0605224BEDF200CC834C /* QuestionBank.swift */; };
+		098B0608224BEE0200CC834C /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098B0607224BEE0200CC834C /* Question.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,9 @@
 		0907040F224939D9003EB7C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		09070412224939D9003EB7C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		09070414224939D9003EB7C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		098B0600224BD17100CC834C /* TriviaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriviaViewController.swift; sourceTree = "<group>"; };
+		098B0605224BEDF200CC834C /* QuestionBank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionBank.swift; sourceTree = "<group>"; };
+		098B0607224BEE0200CC834C /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,13 +61,48 @@
 			isa = PBXGroup;
 			children = (
 				09070408224939D8003EB7C9 /* AppDelegate.swift */,
-				0907040A224939D8003EB7C9 /* ViewController.swift */,
-				0907040C224939D8003EB7C9 /* Main.storyboard */,
-				0907040F224939D9003EB7C9 /* Assets.xcassets */,
-				09070411224939D9003EB7C9 /* LaunchScreen.storyboard */,
+				098B0603224BE0FE00CC834C /* Controller */,
+				098B0602224BE0C400CC834C /* View */,
+				098B0609224BEE0800CC834C /* Model */,
+				098B0604224BE17500CC834C /* Supporting Files */,
 				09070414224939D9003EB7C9 /* Info.plist */,
 			);
 			path = "Trivia Rock Ultime";
+			sourceTree = "<group>";
+		};
+		098B0602224BE0C400CC834C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0907040C224939D8003EB7C9 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		098B0603224BE0FE00CC834C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				098B0600224BD17100CC834C /* TriviaViewController.swift */,
+				0907040A224939D8003EB7C9 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		098B0604224BE17500CC834C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0907040F224939D9003EB7C9 /* Assets.xcassets */,
+				09070411224939D9003EB7C9 /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		098B0609224BEE0800CC834C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				098B0607224BEE0200CC834C /* Question.swift */,
+				098B0605224BEDF200CC834C /* QuestionBank.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -96,6 +137,7 @@
 				TargetAttributes = {
 					09070404224939D8003EB7C9 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -135,7 +177,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				098B0608224BEE0200CC834C /* Question.swift in Sources */,
 				0907040B224939D8003EB7C9 /* ViewController.swift in Sources */,
+				098B0606224BEDF200CC834C /* QuestionBank.swift in Sources */,
+				098B0601224BD17100CC834C /* TriviaViewController.swift in Sources */,
 				09070409224939D8003EB7C9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -291,7 +336,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.OlivierCaron.Trivia-Rock-Ultime";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -309,7 +354,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.OlivierCaron.Trivia-Rock-Ultime";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
