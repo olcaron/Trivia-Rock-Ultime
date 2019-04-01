@@ -24,7 +24,7 @@ class TriviaViewController: UIViewController {
     let allQuestions = QuestionBank()
     var reponseChoisie : Int = 0
     var numeroDeQuestion : Int = 0
-    var caseChoisie = ""
+    var caseChoisie : UIButton!
     
     
     
@@ -41,17 +41,17 @@ class TriviaViewController: UIViewController {
         switch sender.tag {
         case 1 :
             reponseChoisie = 1
-            caseChoisie = "reponseB1"
+            caseChoisie = reponseB1
         // créer une variable ( String ) qui contient le nom de la variable de la case et lorsque on fait le switch on assigne la string avec le nom de la variable de case a une autre variable ex: caseChoisie = reponseB1 --> en faisant cela lorsque vérifie la réponse on est aussi capable de changer la couleur de la case
         case 2 :
             reponseChoisie = 2
-            caseChoisie = "reponseB2"
+            caseChoisie = reponseB2
         case 3 :
             reponseChoisie = 3
-            caseChoisie = "reponseB3"
+            caseChoisie = reponseB3
         case 4 :
             reponseChoisie = 4
-            caseChoisie = "reponseB4"
+            caseChoisie = reponseB4
         default : reponseChoisie = 0
         }// fin du switch
         verifieReponse()
@@ -66,13 +66,13 @@ class TriviaViewController: UIViewController {
         if bonneReponse == reponseChoisie {
             print("Bonne reponse")
             // on change la cellule de la bonne réponse / la cellule cliqué a vert
-            //reponseB1.backgroundColor = .init(red: 0.267, green: 0.741, blue: 0.196, alpha: 1)
+            caseChoisie.backgroundColor = .init(red: 0.267, green: 0.741, blue: 0.196, alpha: 1)
             questionLabel.text = "Bonne Réponse"
             
         } else {
             print("Mauvaise reponse")
             // on change la cellule cliqué a rouge
-            //reponseB1.backgroundColor = .init(red: 0.761, green: 0.212, blue: 0.086, alpha: 1)
+            caseChoisie.backgroundColor = .init(red: 0.761, green: 0.212, blue: 0.086, alpha: 1)
             questionLabel.text = "Mauvaise reponse"
             
         }// fin du if else
@@ -100,8 +100,10 @@ class TriviaViewController: UIViewController {
         progressBar.frame.size.width = (view.frame.size.width / 10) * CGFloat(numeroDeQuestion + 1)
         progressLabel.text = "\(numeroDeQuestion + 1) / 10"
         
-        // on retourne les cellules a leur couleur normale
-        //reponseB1.backgroundColor = .init(red: 0.878, green: 0.704, blue: 0.197, alpha: 1)
+        // on retourne les cellules a leur couleur normale et avec le if let la ligne est seulement executer si la valeur de caseChoisie n'est pas nil
+        if let caseBackground = caseChoisie {
+        caseBackground.backgroundColor = .init(red: 0.878, green: 0.704, blue: 0.197, alpha: 1)
+        }// fin du if let
     }// fin de miseAJourUI
     
     /*
