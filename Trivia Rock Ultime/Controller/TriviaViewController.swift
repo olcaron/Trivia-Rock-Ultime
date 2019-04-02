@@ -25,6 +25,7 @@ class TriviaViewController: UIViewController {
     var reponseChoisie : Int = 0
     var numeroDeQuestion : Int = 0
     var caseChoisie : UIButton!
+    var questionsReusis : Int = 0
     
     
     
@@ -64,16 +65,17 @@ class TriviaViewController: UIViewController {
         let bonneReponse = allQuestions.list[numeroDeQuestion].reponse
         
         if bonneReponse == reponseChoisie {
+            questionsReusis += 1
             print("Bonne reponse")
             // on change la cellule de la bonne réponse / la cellule cliqué a vert
             caseChoisie.backgroundColor = .init(red: 0.267, green: 0.741, blue: 0.196, alpha: 1)
-            questionLabel.text = "Bonne Réponse"
+            questionLabel.text = "Bonne réponse"
             
         } else {
             print("Mauvaise reponse")
             // on change la cellule cliqué a rouge
             caseChoisie.backgroundColor = .init(red: 0.761, green: 0.212, blue: 0.086, alpha: 1)
-            questionLabel.text = "Mauvaise reponse"
+            questionLabel.text = "Mauvaise réponse"
             
         }// fin du if else
     }// fin de verifieReponse
@@ -81,7 +83,7 @@ class TriviaViewController: UIViewController {
     // fonction qui load les questions
     func prochaineQuestion(){
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
-            if self.numeroDeQuestion <= 5 {
+            if self.numeroDeQuestion <= 9 {
                 self.questionLabel.text = self.allQuestions.list[self.numeroDeQuestion].questionText
                 self.reponseB1.setTitle(self.allQuestions.list[self.numeroDeQuestion].reponse1, for: .normal)
                 self.reponseB2.setTitle(self.allQuestions.list[self.numeroDeQuestion].reponse2, for: .normal)
@@ -91,6 +93,11 @@ class TriviaViewController: UIViewController {
                 self.miseAJourUI()
             } else {
                 print("Quiz fini")
+                let alert = UIAlertController(title: "Félicitations!", message: "Vous avez complété le quiz! Vous avez réussi: \(self.questionsReusis)/10 questions!", preferredStyle: .alert)
+//                let retourAuMenu = UIAlertAction(title: "Retourner au Menu ?", style: .default, handler: { (UIAlertAction) in
+//                    // code vers segue qui nous rapporte au menu
+//                })
+                self.present(alert,animated: true, completion: nil)
             }// fin du else if
         }//fin de dispatQueue asyncAfter
     }// fin de prochaineQuestion
