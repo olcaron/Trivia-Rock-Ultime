@@ -20,7 +20,17 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         titreNiveau.text = "Niveau 1 : \n Les grands hits du rock"
     }// fin de viewDidLoad
-
+    
+    @IBAction func triviaPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "allerAQuizTrivia", sender: self)
+    }// fin de trivia pressed
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "allerAQuizTrivia"{
+         //  code a faire avant le segue
+        }
+    }// fin de prepare for segue
 
 }// fin de ViewController
 

@@ -25,13 +25,16 @@ class TriviaViewController: UIViewController {
     var reponseChoisie : Int = 0
     var numeroDeQuestion : Int = 0
     var caseChoisie : UIButton!
+    var caseBonneReponse : UIButton!
     var questionsReusis : Int = 0
+    var boutonsPossibles : [UIButton]!
     
     
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        boutonsPossibles = [reponseB1, reponseB2, reponseB3, reponseB4]
 
         // Do any additional setup after loading the view.
         prochaineQuestion()
@@ -63,7 +66,7 @@ class TriviaViewController: UIViewController {
     
     func verifieReponse() {
         let bonneReponse = allQuestions.list[numeroDeQuestion].reponse
-        
+        caseBonneReponse = boutonsPossibles[numeroDeQuestion]
         if bonneReponse == reponseChoisie {
             questionsReusis += 1
             print("Bonne reponse")
@@ -75,6 +78,7 @@ class TriviaViewController: UIViewController {
             print("Mauvaise reponse")
             // on change la cellule cliqué a rouge
             caseChoisie.backgroundColor = .init(red: 0.761, green: 0.212, blue: 0.086, alpha: 1)
+            caseBonneReponse.backgroundColor = .init(red: 0.267, green: 0.741, blue: 0.196, alpha: 1)
             questionLabel.text = "Mauvaise réponse"
             
         }// fin du if else
@@ -94,10 +98,13 @@ class TriviaViewController: UIViewController {
             } else {
                 print("Quiz fini")
                 let alert = UIAlertController(title: "Félicitations!", message: "Vous avez complété le quiz! Vous avez réussi: \(self.questionsReusis)/10 questions!", preferredStyle: .alert)
-//                let retourAuMenu = UIAlertAction(title: "Retourner au Menu ?", style: .default, handler: { (UIAlertAction) in
-//                    // code vers segue qui nous rapporte au menu
-//                })
+                let retourAuMenu = UIAlertAction(title: "Retourner au Menu?", style: .default, handler: { (UIAlertAction) in
+                    // code vers segue qui nous rapporte au menu
+                    self.dismiss(animated: true, completion: nil)
+                })
+                alert.addAction(retourAuMenu)
                 self.present(alert,animated: true, completion: nil)
+                
             }// fin du else if
         }//fin de dispatQueue asyncAfter
     }// fin de prochaineQuestion
@@ -110,7 +117,9 @@ class TriviaViewController: UIViewController {
         // on retourne les cellules a leur couleur normale et avec le if let la ligne est seulement executer si la valeur de caseChoisie n'est pas nil
         if let caseBackground = caseChoisie {
         caseBackground.backgroundColor = .init(red: 0.878, green: 0.704, blue: 0.197, alpha: 1)
+        caseBonneReponse.backgroundColor = .init(red: 0.878, green: 0.704, blue: 0.197, alpha: 1)
         }// fin du if let
+        
     }// fin de miseAJourUI
     
     /*
