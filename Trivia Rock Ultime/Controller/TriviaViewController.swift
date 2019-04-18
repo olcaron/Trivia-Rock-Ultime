@@ -66,7 +66,7 @@ class TriviaViewController: UIViewController {
     
     func verifieReponse() {
         let bonneReponse = allQuestions.list[numeroDeQuestion].reponse
-        caseBonneReponse = boutonsPossibles[numeroDeQuestion]
+        caseBonneReponse = boutonsPossibles[bonneReponse - 1]
         if bonneReponse == reponseChoisie {
             questionsReusis += 1
             print("Bonne reponse")
@@ -86,7 +86,7 @@ class TriviaViewController: UIViewController {
     
     // fonction qui load les questions
     func prochaineQuestion(){
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(750)) {
             if self.numeroDeQuestion <= 9 {
                 self.questionLabel.text = self.allQuestions.list[self.numeroDeQuestion].questionText
                 self.reponseB1.setTitle(self.allQuestions.list[self.numeroDeQuestion].reponse1, for: .normal)
