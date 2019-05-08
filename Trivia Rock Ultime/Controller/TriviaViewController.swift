@@ -34,6 +34,7 @@ class TriviaViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        // on initialise les boutons possibles
         boutonsPossibles = [reponseB1, reponseB2, reponseB3, reponseB4]
 
         // Do any additional setup after loading the view.
@@ -73,26 +74,41 @@ class TriviaViewController: UIViewController {
             // on change la cellule de la bonne réponse / la cellule cliqué a vert
             caseChoisie.backgroundColor = .init(red: 0.267, green: 0.741, blue: 0.196, alpha: 1)
             questionLabel.text = "Bonne réponse"
-            
+            // on deactive les boutons afin que l'utilisateur ne puisse pas continuer le quiz pendant le delais
+            reponseB1.isEnabled = false
+            reponseB2.isEnabled = false
+            reponseB3.isEnabled = false
+            reponseB4.isEnabled = false
         } else {
             print("Mauvaise reponse")
             // on change la cellule cliqué a rouge
             caseChoisie.backgroundColor = .init(red: 0.761, green: 0.212, blue: 0.086, alpha: 1)
             caseBonneReponse.backgroundColor = .init(red: 0.267, green: 0.741, blue: 0.196, alpha: 1)
             questionLabel.text = "Mauvaise réponse"
-            
+            // on deactive les boutons afin que l'utilisateur ne puisse pas continuer le quiz pendant le delais
+            reponseB1.isEnabled = false
+            reponseB2.isEnabled = false
+            reponseB3.isEnabled = false
+            reponseB4.isEnabled = false
         }// fin du if else
     }// fin de verifieReponse
     
     // fonction qui load les questions
     func prochaineQuestion(){
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(750)) {
+        // lorsque le delais est fini le code dans les parenthaises weird est execute
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(650)) {
             if self.numeroDeQuestion <= 9 {
-                self.questionLabel.text = self.allQuestions.list[self.numeroDeQuestion].questionText
+                // on remet la couleur normale des boutons
+                self.questionLabel.text = self.allQuestions.list[self.numeroDeQuestion].questionMedia
                 self.reponseB1.setTitle(self.allQuestions.list[self.numeroDeQuestion].reponse1, for: .normal)
                 self.reponseB2.setTitle(self.allQuestions.list[self.numeroDeQuestion].reponse2, for: .normal)
                 self.reponseB3.setTitle(self.allQuestions.list[self.numeroDeQuestion].reponse3, for: .normal)
                 self.reponseB4.setTitle(self.allQuestions.list[self.numeroDeQuestion].reponse4, for: .normal)
+                // on reactive les boutons afin que l'utilisateur puisse continuer le quiz
+                self.reponseB1.isEnabled = true
+                self.reponseB2.isEnabled = true
+                self.reponseB3.isEnabled = true
+                self.reponseB4.isEnabled = true
                 // on met a jour les interfaces utilisateur
                 self.miseAJourUI()
             } else {
@@ -104,7 +120,6 @@ class TriviaViewController: UIViewController {
                 })
                 alert.addAction(retourAuMenu)
                 self.present(alert,animated: true, completion: nil)
-                
             }// fin du else if
         }//fin de dispatQueue asyncAfter
     }// fin de prochaineQuestion

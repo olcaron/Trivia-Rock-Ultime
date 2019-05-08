@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ChoizQuizViewController: UIViewController {
     
     // variables
     @IBOutlet weak var bouttonQuizTrivia: UIButton!
@@ -25,13 +25,22 @@ class ViewController: UIViewController {
         performSegue(withIdentifier: "allerAQuizTrivia", sender: self)
     }// fin de trivia pressed
     
+    @IBAction func chansonPressed(_ sender: UIButton) {
+        //set up segue
+        performSegue(withIdentifier: "allerAChansonTrivia", sender: self)
+    }
+    
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "allerAQuizTrivia"{
          //  code a faire avant le segue
         }
+        
+        if segue.identifier == "allerAChansonTrivia"{
+            // code a faire avant le segue
+        }//fin du if
     }// fin de prepare for segue
-
 }// fin de ViewController
 
 

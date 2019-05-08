@@ -10,15 +10,15 @@ import Foundation
 
 class Question {
     
-    let questionText : String
+    let questionMedia : String
     let reponse1 : String
     let reponse2 : String
     let reponse3 : String
     let reponse4 : String
     let reponse : Int
     
-    init(text : String, reponseA : String, reponseB : String, reponseC : String, reponseD : String, bonneReponse : Int) {
-        questionText = text
+    init(media : String, reponseA : String, reponseB : String, reponseC : String, reponseD : String, bonneReponse : Int) {
+        questionMedia = media
         reponse1 = reponseA
         reponse2 = reponseB
         reponse3 = reponseC
