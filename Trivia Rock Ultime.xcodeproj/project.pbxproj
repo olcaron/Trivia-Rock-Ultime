@@ -13,6 +13,9 @@
 		09070410224939D9003EB7C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0907040F224939D9003EB7C9 /* Assets.xcassets */; };
 		09070413224939D9003EB7C9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09070411224939D9003EB7C9 /* LaunchScreen.storyboard */; };
 		09241D1822806FEA00B70385 /* ChansonBanqueDeQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09241D1722806FEA00B70385 /* ChansonBanqueDeQuestion.swift */; };
+		092874F4229D948000651313 /* ChoixNiveauTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092874F2229D948000651313 /* ChoixNiveauTableViewCell.swift */; };
+		092874F5229D948000651313 /* ChoixNiveauTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 092874F3229D948000651313 /* ChoixNiveauTableViewCell.xib */; };
+		092874F7229D9B4600651313 /* ChoixNiveauViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092874F6229D9B4600651313 /* ChoixNiveauViewController.swift */; };
 		098B0601224BD17100CC834C /* TriviaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098B0600224BD17100CC834C /* TriviaViewController.swift */; };
 		098B0606224BEDF200CC834C /* QuestionBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098B0605224BEDF200CC834C /* QuestionBank.swift */; };
 		098B0608224BEE0200CC834C /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098B0607224BEE0200CC834C /* Question.swift */; };
@@ -29,6 +32,9 @@
 		09070412224939D9003EB7C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		09070414224939D9003EB7C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		09241D1722806FEA00B70385 /* ChansonBanqueDeQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChansonBanqueDeQuestion.swift; sourceTree = "<group>"; };
+		092874F2229D948000651313 /* ChoixNiveauTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoixNiveauTableViewCell.swift; sourceTree = "<group>"; };
+		092874F3229D948000651313 /* ChoixNiveauTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChoixNiveauTableViewCell.xib; sourceTree = "<group>"; };
+		092874F6229D9B4600651313 /* ChoixNiveauViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoixNiveauViewController.swift; sourceTree = "<group>"; };
 		098B0600224BD17100CC834C /* TriviaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriviaViewController.swift; sourceTree = "<group>"; };
 		098B0605224BEDF200CC834C /* QuestionBank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionBank.swift; sourceTree = "<group>"; };
 		098B0607224BEE0200CC834C /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
@@ -71,14 +77,24 @@
 		09070407224939D8003EB7C9 /* Trivia Rock Ultime */ = {
 			isa = PBXGroup;
 			children = (
+				092874F1229D944E00651313 /* Cellules Custom */,
 				09070408224939D8003EB7C9 /* AppDelegate.swift */,
 				098B0603224BE0FE00CC834C /* Controller */,
-				098B0602224BE0C400CC834C /* View */,
 				098B0609224BEE0800CC834C /* Model */,
+				098B0602224BE0C400CC834C /* View */,
 				098B0604224BE17500CC834C /* Supporting Files */,
 				09070414224939D9003EB7C9 /* Info.plist */,
 			);
 			path = "Trivia Rock Ultime";
+			sourceTree = "<group>";
+		};
+		092874F1229D944E00651313 /* Cellules Custom */ = {
+			isa = PBXGroup;
+			children = (
+				092874F2229D948000651313 /* ChoixNiveauTableViewCell.swift */,
+				092874F3229D948000651313 /* ChoixNiveauTableViewCell.xib */,
+			);
+			path = "Cellules Custom";
 			sourceTree = "<group>";
 		};
 		098B0602224BE0C400CC834C /* View */ = {
@@ -92,6 +108,7 @@
 		098B0603224BE0FE00CC834C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				092874F6229D9B4600651313 /* ChoixNiveauViewController.swift */,
 				0907040A224939D8003EB7C9 /* ChoixQuizViewController.swift */,
 				098B0600224BD17100CC834C /* TriviaViewController.swift */,
 				09B02DB12270DA8600B00CAF /* ChansonViewController.swift */,
@@ -199,6 +216,7 @@
 				09070413224939D9003EB7C9 /* LaunchScreen.storyboard in Resources */,
 				09070410224939D9003EB7C9 /* Assets.xcassets in Resources */,
 				0907040E224939D8003EB7C9 /* Main.storyboard in Resources */,
+				092874F5229D948000651313 /* ChoixNiveauTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,12 +277,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				098B0608224BEE0200CC834C /* Question.swift in Sources */,
+				092874F7229D9B4600651313 /* ChoixNiveauViewController.swift in Sources */,
 				09B02DB22270DA8600B00CAF /* ChansonViewController.swift in Sources */,
 				0907040B224939D8003EB7C9 /* ChoixQuizViewController.swift in Sources */,
 				09241D1822806FEA00B70385 /* ChansonBanqueDeQuestion.swift in Sources */,
 				098B0606224BEDF200CC834C /* QuestionBank.swift in Sources */,
 				098B0601224BD17100CC834C /* TriviaViewController.swift in Sources */,
 				09070409224939D8003EB7C9 /* AppDelegate.swift in Sources */,
+				092874F4229D948000651313 /* ChoixNiveauTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

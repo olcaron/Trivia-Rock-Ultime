@@ -19,22 +19,34 @@ class ChansonViewController: UIViewController, AVAudioPlayerDelegate {
     @IBOutlet weak var reponseB3: UIButton!
     @IBOutlet weak var reponseB4: UIButton!
     @IBOutlet weak var progressLabel: UILabel!
+    @IBOutlet weak var titreDuNiveauLabel: UILabel!
     
     //variables
     var player : AVPlayer?
-    let toutesLesQuestions = ChansonBanqueDeQuestion()
+    var timer : Timer?
+    var timerRunCount = 0
+    let toutesLesQuestions = ChansonBanqueDeQuestion().quizs
     var numeroDeQuestion : Int = 0
     var caseBonneReponse : UIButton!
     var boutonsPossibles : [UIButton]!
     var reponseChoisie : Int = 0
     var caseChoisie : UIButton!
     var questionsReusis : Int = 0
+    var reponseEntree : Bool = false
+    var numeroDeQuiz = 0
+    var titreDuNiveau = ""
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // on initialise les boutons possibles
         boutonsPossibles = [reponseB1, reponseB2, reponseB3, reponseB4]
+        
+        //on met le timer a 0
+        timerRunCount = 0
+        
+        //on affiche le titre du niveau
+        titreDuNiveauLabel.text = titreDuNiveau
 
         // Do any additional setup after loading the view.
         prochaineChanson()
@@ -42,6 +54,7 @@ class ChansonViewController: UIViewController, AVAudioPlayerDelegate {
     }// fin de viewDidLoad
     
     @IBAction func reponsePressed(_ sender: UIButton) {
+        reponseEntree = true
         switch sender.tag {
         case 1 :
             print("bouton a clique")
@@ -69,16 +82,29 @@ class ChansonViewController: UIViewController, AVAudioPlayerDelegate {
     }// fin de reponsePressed
     
     
+    @IBAction func quitterPressed(_ sender: UIButton) {
+        let alert = UIAlertController(title: "Quiter le quiz", message: "Êtes vous sur de vouloir quiter le quiz? Tout progrès va être perdu", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Oui", style: .default, handler: { (UIAlertAction) in
+            //on retourne au menu
+            self.numeroDeQuestion = 0
+            self.questionsReusis = 0
+            self.dismiss(animated: true, completion: nil)
+        }))
+        alert.addAction(UIAlertAction(title: "Anuller", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }//fin de quitterPressed
+    
+    
     func prochaineChanson() {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(650)) {
             if self.numeroDeQuestion <= 9 {
                 self.player?.cancelPendingPrerolls()
-                self.jouerSon(urlDeChanson: self.toutesLesQuestions.questionsGrandsHits[self.numeroDeQuestion].questionMedia)
+                self.jouerSon(urlDeChanson: self.toutesLesQuestions[self.numeroDeQuiz][self.numeroDeQuestion].questionMedia)
                 self.questionLabel.text = "Qui/quel est l'artiste/titre de la chanson jouant présentement"
-                self.reponseB1.setTitle(self.toutesLesQuestions.questionsGrandsHits[self.numeroDeQuestion].reponse1, for: .normal)
-                self.reponseB2.setTitle(self.toutesLesQuestions.questionsGrandsHits[self.numeroDeQuestion].reponse2, for: .normal)
-                self.reponseB3.setTitle(self.toutesLesQuestions.questionsGrandsHits[self.numeroDeQuestion].reponse3, for: .normal)
-                self.reponseB4.setTitle(self.toutesLesQuestions.questionsGrandsHits[self.numeroDeQuestion].reponse4, for: .normal)
+                self.reponseB1.setTitle(self.toutesLesQuestions[self.numeroDeQuiz][self.numeroDeQuestion].reponse1, for: .normal)
+                self.reponseB2.setTitle(self.toutesLesQuestions[self.numeroDeQuiz][self.numeroDeQuestion].reponse2, for: .normal)
+                self.reponseB3.setTitle(self.toutesLesQuestions[self.numeroDeQuiz][self.numeroDeQuestion].reponse3, for: .normal)
+                self.reponseB4.setTitle(self.toutesLesQuestions[self.numeroDeQuiz][self.numeroDeQuestion].reponse4, for: .normal)
                 
                 // on reactive les boutons afin que l'utilisateur puisse continuer le quiz
                 self.reponseB1.isEnabled = true
@@ -87,6 +113,39 @@ class ChansonViewController: UIViewController, AVAudioPlayerDelegate {
                 self.reponseB4.isEnabled = true
                 // on mets a jour les interfaces utilisateurs
                 self.miseAJourUI()
+                
+                //on active le timer
+                
+//                self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: {
+//                    timer in
+//                    print("timer Parti")
+//                    print("temps timer: \(self.timerRunCount)")
+//                    self.timerRunCount += 1
+//
+//                    if self.reponseEntree == true && self.timerRunCount <= 3 {
+//                        
+//                    }//fin du if
+//
+//                    if self.reponseEntree == true && self.timerRunCount <= 5  {
+//
+//                    }//end of if
+//                    if self.reponseEntree == true {
+//                        switch self.timerRunCount {
+//                        case 0...3:
+//                            print("100 points")
+//                        case 4...6:
+//                            print("75 points")
+//                        case 7...10:
+//                            print("25 points")
+//                        default:
+//                            print("aucun points")
+//                        }//end of switch
+//                    }//fin du if
+//
+//                })// fin du closure
+                
+                self.reponseEntree = false
+                
             } else {
                 print("quiz fini")
                 print("Score final est de: \(self.questionsReusis) questions reusis")
@@ -118,7 +177,7 @@ class ChansonViewController: UIViewController, AVAudioPlayerDelegate {
     
     //fonction qui verifie si l'utilisateur a choisi la bonne reponse
     func verifieReponse() {
-        let bonneReponse = toutesLesQuestions.questionsGrandsHits[numeroDeQuestion].reponse
+        let bonneReponse = toutesLesQuestions[numeroDeQuiz][numeroDeQuestion].reponse
         caseBonneReponse = boutonsPossibles[bonneReponse - 1]
         
         if bonneReponse == reponseChoisie {
